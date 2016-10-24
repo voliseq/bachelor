@@ -19,7 +19,7 @@ import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
 
 
-window['jQuery'] = require('jquery');
+window['jQuery'] = require('jQuery');
 window['$'] = window['jQuery'];
 // import 'jquery-ui-npm/jquery-ui.min.js'
 
