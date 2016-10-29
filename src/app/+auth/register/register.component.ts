@@ -37,9 +37,12 @@ export class RegisterComponent implements OnInit {
     this._authService.signup(user)
         .subscribe(
             data => console.log(data),
-            error => console.log(error)
+            error => console.log(error);
+            setTimeout(() => {
+              this.router.navigate(['/auth/login']);
+            }, 1000)
         );
     this.myForm.reset();
-  }
+  };
 
 }

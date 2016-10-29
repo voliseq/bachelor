@@ -17,6 +17,14 @@ export class AuthService {
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
+  signin(user: User){
+    const body = JSON.stringify(user);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    return this._http.post('http://localhost:3000/user/signin', body, {headers: headers})
+        .map(response => response.json())
+        .catch(error => Observable.throw(error.json()));
+  };
+
   signup(user: User){
     console.log(user);
     const body = JSON.stringify(user);
