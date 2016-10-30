@@ -6,16 +6,14 @@
 import {Routes, RouterModule} from '@angular/router';
 import {MainLayoutComponent} from "./shared/layout/app-layouts/main-layout.component";
 import {AuthLayoutComponent} from "./shared/layout/app-layouts/auth-layout.component";
-import {TestComponent} from "./test/test.component";
-import {LoginComponent} from "./+auth/login/login.component";
-import {AuthComponent} from "./+auth/auth.component";
 
 export const routes: Routes = [
     {
         path: '',
         component: MainLayoutComponent,
         children: [
-            {path: '', component: TestComponent, pathMatch: 'full'},
+            {path: '', redirectTo: 'e-commerce/products-view', pathMatch: 'full'},
+            {path: 'e-commerce', loadChildren: 'app/+e-commerce/e-commerce.module#ECommerceModule',data:{pageTitle: 'E-commerce'}},
         ]
     },
     { path: 'auth', component: AuthLayoutComponent, loadChildren: 'app/+auth/auth.module#AuthModule'}

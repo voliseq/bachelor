@@ -11,17 +11,16 @@
     -->
 
     <ul saSmartMenu>
-
-      <li routerLinkActive="active">
-        <a routerLink="/home" title="Home">
-          <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">{{'Home' | i18n}}</span></a>
-        <a routerLink="/auth/login" title="Home">
+      <li routerLinkActive="active" >
+        <a  routerLink="/auth/login" title="Home">
           <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">{{'Auth' | i18n}}</span></a>
       </li>
-
+      <li routerLinkActive="active" >
+        <a  routerLink="/e-commerce/products-view" title="Home">
+          <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">{{'Products' | i18n}}</span></a>
+      </li>
     </ul>
   </nav>
-
   <sa-minify-menu></sa-minify-menu>
 
 </aside>
