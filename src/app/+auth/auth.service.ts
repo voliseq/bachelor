@@ -24,7 +24,6 @@ export class AuthService {
         .map(response => response.json())
         .catch(error => Observable.throw(error.json()));
   };
-
   signup(user: User){
     console.log(user);
     const body = JSON.stringify(user);

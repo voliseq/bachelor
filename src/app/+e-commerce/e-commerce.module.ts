@@ -10,6 +10,7 @@ import {routing} from "./e-commerce.routing";
 import {SmartadminDatatableModule} from "../shared/ui/datatable/smartadmin-datatable.module";
 import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 import {CarouselModule} from "ng2-bootstrap";
+import {SocketService} from "../services/socket-service/socket.service";
 
 @NgModule({
   imports: [
