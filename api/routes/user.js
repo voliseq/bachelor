@@ -11,9 +11,11 @@ router.post('/', function(req, res, next){
     console.log(req);
     var user = new User({
         firstName: req.body.firstName,
+        lastName: req.body.lastName,
         password: passwordHash.generate(req.body.password),
         email: req.body.email
     });
+    console.log(user);
     user.save(function(err, result){
         if(err){
             return res.status(404).json({
