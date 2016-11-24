@@ -19,9 +19,9 @@ import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
 
 
-window['jQuery'] = require('jQuery');
+window['jQuery'] = require('jquery');
 window['$'] = window['jQuery'];
-// import 'jquery-ui-npm/jquery-ui.min.js'
+import 'jquery-ui-npm/jquery-ui.min.js'
 
 require('bootstrap/js/alert.js'); // required for X-editable
 require('bootstrap/js/tooltip.js'); // required for X-editable

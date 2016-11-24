@@ -5,12 +5,12 @@ import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
 
 
-/*
+
 import {
   ModalModule, ButtonsModule, TooltipModule, DropdownModule, ProgressbarModule, AlertModule, TabsModule,
   AccordionModule, CarouselModule
 } from 'ng2-bootstrap'
-*/
+
 
 import {PopoverModule} from "ng2-popover/src/index";
 
@@ -29,11 +29,11 @@ import {I18nModule} from "./i18n/i18n.module";
 import {SmartadminWidgetsModule} from "./widgets/smartadmin-widgets.module";
 
 import {UtilsModule} from "./utils/utils.module";
-// import {ChatModule} from "./chat/chat.module";
-// import {StatsModule} from "./stats/stats.module";
-// import {InlineGraphsModule} from "./graphs/inline/inline-graphs.module";
-// import {SmartadminFormsLiteModule} from "./forms/smartadmin-forms-lite.module";
-// import {SmartProgressbarModule} from "./ui/smart-progressbar/smart-progressbar.module";
+import {ChatModule} from "./chat/chat.module";
+import {StatsModule} from "./stats/stats.module";
+import {InlineGraphsModule} from "./graphs/inline/inline-graphs.module";
+import {SmartadminFormsLiteModule} from "./forms/smartadmin-forms-lite.module";
+import {SmartProgressbarModule} from "./ui/smart-progressbar/smart-progressbar.module";
 
 
 @NgModule({
@@ -47,15 +47,15 @@ import {UtilsModule} from "./utils/utils.module";
   exports: [
     CommonModule, FormsModule, HttpModule, RouterModule,
 
-    // ModalModule,
-    // ButtonsModule,
-    // TooltipModule,
-    // DropdownModule,
-    // ProgressbarModule,
-    // AlertModule,
-    // TabsModule,
-    // AccordionModule,
-    // CarouselModule,
+    ModalModule,
+    ButtonsModule,
+    TooltipModule,
+    DropdownModule,
+    ProgressbarModule,
+    AlertModule,
+    TabsModule,
+    AccordionModule,
+    CarouselModule,
 
     PopoverModule,
 
@@ -66,17 +66,17 @@ import {UtilsModule} from "./utils/utils.module";
     UtilsModule,
 
 
-    // SmartadminFormsLiteModule,
+    SmartadminFormsLiteModule,
 
-    // SmartProgressbarModule,
+    SmartProgressbarModule,
 
-    // InlineGraphsModule,
+    InlineGraphsModule,
 
     SmartadminWidgetsModule,
 
-    // ChatModule,
+    ChatModule,
 
-    // StatsModule,
+    StatsModule,
 
   ],
   providers: [JsonApiService, LayoutService]
