@@ -1,12 +1,12 @@
 /**
  * Created by voliseq on 26.11.2016.
  */
-export class product{
+export class Product{
 
-    constructor(public email: string,
-                public password: string,
-                public firstName?: string,
-                public lastName?: string){
+    constructor(public name: string,
+                public description: string,
+                public price: number,
+                public quantity: number){
 
     }
 

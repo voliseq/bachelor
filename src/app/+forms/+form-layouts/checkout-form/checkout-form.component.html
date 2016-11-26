@@ -5,7 +5,7 @@
     <div class="row">
       <section class="col col-xs-12">
         <label class="select">
-          <select name="product" formControlName="product">
+          <select name="name" formControlName="name">
             <option value="0" selected="" disabled="">Product</option>
             <option value="{{country.key}}" *ngFor="let country of countries" >{{country.value}}</option>
           </select> <i></i> </label>
@@ -30,7 +30,7 @@
   <fieldset>
     <section>
       <label class="textarea">
-        <textarea rows="3" name="info" placeholder="Description"></textarea>
+        <textarea rows="3" name="info" formControlName="description" placeholder="Description"></textarea>
       </label>
     </section>
   </fieldset>
