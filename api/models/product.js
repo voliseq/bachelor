@@ -9,7 +9,7 @@ var mongooseUniqueValidator = require('mongoose-unique-validator');
 var schema = new Schema({
     name: {type: String, required: true},
     description: {type: String, required: true},
-    price: {type: String, required: true},
+    price: {type: string, required: true},
     quantity: {type: number, required: true},
 });
 

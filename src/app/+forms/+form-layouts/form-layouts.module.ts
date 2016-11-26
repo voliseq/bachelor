@@ -11,14 +11,16 @@ import {FormLayoutsComponent} from "./form-layouts.component";
 import {formLayoutsRouting} from "./form-layouts.routing";
 import {SmartadminValidationModule} from "../../shared/forms/validation/smartadmin-validation.module";
 import {SmartadminInputModule} from "../../shared/forms/input/smartadmin-input.module";
+import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     SmartadminModule,
-
     formLayoutsRouting,
     SmartadminValidationModule,
-    SmartadminInputModule
+    SmartadminInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [CheckoutFormComponent, RegistrationFormComponent,
     ReviewFormComponent, OrderFormComponent, CommentFormComponent, ContactFormComponent,
