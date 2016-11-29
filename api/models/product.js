@@ -8,9 +8,10 @@ var mongooseUniqueValidator = require('mongoose-unique-validator');
 
 var schema = new Schema({
     name: {type: String, required: true},
+    product_id: {type: Number, required: true, unique: true},
     description: {type: String, required: true},
-    price: {type: number, required: true},
-    quantity: {type: number, required: true},
+    price: {type: Number, required: true},
+    quantity: {type: Number, required: true},
 });
 
 schema.plugin(mongooseUniqueValidator);

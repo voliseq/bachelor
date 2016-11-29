@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var io = require('./sockets');
 
 var userRoutes = require('./routes/user');
-
+var productRoutes = require('./routes/product');
 var app = express();
 mongoose.connect('localhost:27017/auction-system');
 
@@ -35,6 +35,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/user', userRoutes);
+app.use('/product', productRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,5 +1,5 @@
 export const COUNTRIES = [
-  {key: "244", value: "Aaland Islands"},
+  {key: "0", value: "Aaland Islands"},
   {key: "1", value: "Afghanistan"},
   {key: "2", value: "Albania"},
   {key: "3", value: "Algeria"},

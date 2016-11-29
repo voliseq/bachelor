@@ -1,6 +1,7 @@
 import {NgModule} from "@angular/core";
 
 import {routing} from "./forms-showcase.routing";
+import {ProductsService} from "../shared/products/products.service";
 
 @NgModule({
   declarations: [
@@ -8,7 +9,7 @@ import {routing} from "./forms-showcase.routing";
   imports: [
     routing,
   ],
-  providers: [],
+  providers: [ProductsService],
   entryComponents: []
 })
 export class FormsShowcaseModule {}
