@@ -21,6 +21,14 @@ export class ProductsService {
         .catch(error => Observable.throw(error.json()));
   };
 
+  fileUpload(file){
+    console.log(file);
+    var body = file;
+    console.log(body);
+    return this._http.post('http://localhost:3000/file', body)
+        .map(response => response.json())
+        .catch(error => Observable.throw(error.json()));
+  };
 
 
 }

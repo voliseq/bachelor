@@ -6,21 +6,25 @@
  */
 
 var express = require('express');
+var multer = require('multer');
 var router = express.Router();
-router.post('/', function(req, res, next){
-    console.log(req.body);
-    // console.log(user);
-    // product.save(function(err, result){
-    //     if(err){
-    //         return res.status(404).json({
-    //             title: 'An error occured',
-    //             error: err
-    //         })
-    //     }
-    //     res.status(200).json({
-    //         message: 'successfully added a new product',
-    //         obj: result
-    //     })
-    // })
+var DIR = './uploads/';
+var upload = multer({dest: DIR}).single('file');
+var fs = require('fs');
+
+
+router.get('/get', function (req, res) {
+    res.end('file catcher example');
+});
+
+router.post('/', function (req, res) {
+    upload(req, res, function (err) {
+        console.log(req.file);
+        if (err) {
+            return res.end(err.toString());
+        }
+
+        res.end('File is uploaded');
+    });
 });
 module.exports = router;
