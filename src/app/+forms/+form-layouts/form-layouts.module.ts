@@ -12,7 +12,7 @@ import {formLayoutsRouting} from "./form-layouts.routing";
 import {SmartadminValidationModule} from "../../shared/forms/validation/smartadmin-validation.module";
 import {SmartadminInputModule} from "../../shared/forms/input/smartadmin-input.module";
 import {ReactiveFormsModule, FormsModule} from "@angular/forms";
-
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 @NgModule({
   imports: [
     SmartadminModule,
@@ -24,7 +24,7 @@ import {ReactiveFormsModule, FormsModule} from "@angular/forms";
   ],
   declarations: [CheckoutFormComponent, RegistrationFormComponent,
     ReviewFormComponent, OrderFormComponent, CommentFormComponent, ContactFormComponent,
-    FormLayoutsComponent
+    FormLayoutsComponent, FileSelectDirective, FileDropDirective
   ],
 })
 export class FormLayoutsModule {}

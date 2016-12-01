@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-
+import {Component, OnInit } from '@angular/core';
+import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import {PRODUCTS} from '../../../shared/products/products';
 import {FormGroup, Validators, FormControl} from "@angular/forms";
 import { Product } from "../../product.model";
 import {ProductsService} from "../../../shared/products/products.service";
+const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 @Component({
 
   selector: 'sa-checkout-form',
@@ -36,5 +37,21 @@ export class CheckoutFormComponent implements OnInit {
       quantity: new FormControl('', [Validators.required])
     });
   }
+  //uploader
+  public uploader:FileUploader = new FileUploader({url: URL});
+  public hasBaseDropZoneOver:boolean = false;
+  public hasAnotherDropZoneOver:boolean = false;
+
+  public fileOverBase(e:any):void {
+    this.hasBaseDropZoneOver = e;
+  }
+
+  public fileOverAnother(e:any):void {
+    this.hasAnotherDropZoneOver = e;
+  }
+
+  checkUploader(){
+    console.log(this.uploader.queue);
+  };
 
 }
