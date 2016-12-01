@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import {COUNTRIES} from '../../../shared/forms/common/countries'
+import {PRODUCTS} from '../../../shared/products/products';
 import {FormGroup, Validators, FormControl} from "@angular/forms";
 import { Product } from "../../product.model";
 import {ProductsService} from "../../../shared/products/products.service";
@@ -13,12 +13,12 @@ export class CheckoutFormComponent implements OnInit {
 
 
   myForm: FormGroup;
-  public countries: Array<any>
+  public products: Array<any>
 
   constructor(private _productsService: ProductsService) {}
 
   onSubmit(){
-    let name = this.countries[<number>this.myForm.value.name].value;
+    let name = this.products[<number>this.myForm.value.name].value;
     const product = new Product(name, parseInt(this.myForm.value.name),  this.myForm.value.description, this.myForm.value.price, this.myForm.value.quantity);
     console.log(product);
     this._productsService.onAddProduct(product).subscribe(
@@ -28,7 +28,7 @@ export class CheckoutFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.countries = COUNTRIES;
+    this.products = PRODUCTS;
     this.myForm = new FormGroup({
       name: new FormControl(0, [Validators.required]),
       description: new FormControl('', [Validators.required]),

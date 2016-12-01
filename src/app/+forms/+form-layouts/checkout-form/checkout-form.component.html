@@ -7,7 +7,7 @@
         <label class="select">
           <select name="name" formControlName="name">
             <option value="0" selected="" disabled="">Product</option>
-            <option value="{{country.key}}" *ngFor="let country of countries" >{{country.value}}</option>
+            <option value="{{product.product_id}}" *ngFor="let product of products" >{{product.name}}</option>
           </select> <i></i> </label>
       </section>
     </div>
