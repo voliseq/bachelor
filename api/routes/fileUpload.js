@@ -28,7 +28,9 @@ router.get('/get', function (req, res) {
     res.end('file catcher example');
 });
 
-router.post('/',upload.array('file'), function (req, res) {
-    console.log(req.files);
+router.post('/',upload.single('file'), function (req, res) {
+    console.log("file: "+JSON.stringify(req.file));
+    console.log("files: "+JSON.stringify(req.files));
+    res.end('uploaded file');
 });
 module.exports = router;

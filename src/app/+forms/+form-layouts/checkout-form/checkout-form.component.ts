@@ -23,14 +23,16 @@ export class CheckoutFormComponent implements OnInit {
     const product = new Product(name, parseInt(this.myForm.value.name),  this.myForm.value.description, this.myForm.value.price, this.myForm.value.quantity);
     this._productsService.onAddProduct(product).subscribe(
         data => {
-            console.log(this);
+            console.log("elo");
             let product_db_id = data.obj._id;
-            console.log(this.uploader.queue.length);
             for(let i = 0; i < this.uploader.queue.length; i++){
-                console.log("elo");
-                var element = this.uploader.queue[i];
-                element.url = URL+"/?id="+product_db_id;
-                element.upload();
+                var self = this;
+                setTimeout(function(){
+                    console.log("elo");
+                    var element = self.uploader.queue[i];
+                    element.url = URL+"/?id="+product_db_id;
+                    element.upload();
+                }, 10000)
             }
         },
         error => console.log(error)

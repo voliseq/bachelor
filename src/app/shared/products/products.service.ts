@@ -18,7 +18,8 @@ export class ProductsService {
 
     return this._http.post('http://localhost:3000/product', body, {headers: headers})
         .map(response => response.json())
-        .catch(error => Observable.throw(error.json()));
+        .catch(error => Observable.throw(error.json()))
+        .share();
   };
 
   fileUpload(file){
