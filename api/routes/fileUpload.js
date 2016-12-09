@@ -7,9 +7,20 @@
 
 var express = require('express');
 var multer = require('multer');
+var DIR = "./uploads/";
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        var FINAL_DIR = DIR + req.query.id;
+        if(!fs.existsSync(FINAL_DIR)){
+            fs.mkdir(FINAL_DIR);
+        }
+        cb(null, FINAL_DIR); // Absolute path. Folder must exist, will not be created for you.
+    }
+});
+
 var router = express.Router();
 var DIR = './uploads/';
-var upload = multer({dest: DIR}).single('file');
+var upload = multer({ storage: storage });
 var fs = require('fs');
 
 
@@ -17,14 +28,7 @@ router.get('/get', function (req, res) {
     res.end('file catcher example');
 });
 
-router.post('/', function (req, res) {
-    upload(req, res, function (err) {
-        console.log(req.file);
-        if (err) {
-            return res.end(err.toString());
-        }
-
-        res.end('File is uploaded');
-    });
+router.post('/',upload.array('file'), function (req, res) {
+    console.log(req.files);
 });
 module.exports = router;

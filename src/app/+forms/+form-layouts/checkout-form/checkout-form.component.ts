@@ -4,7 +4,7 @@ import {PRODUCTS} from '../../../shared/products/products';
 import {FormGroup, Validators, FormControl} from "@angular/forms";
 import { Product } from "../../product.model";
 import {ProductsService} from "../../../shared/products/products.service";
-const URL = 'http://localhost:3000/file';
+var URL = 'http://localhost:3000/file';
 @Component({
 
   selector: 'sa-checkout-form',
@@ -19,11 +19,20 @@ export class CheckoutFormComponent implements OnInit {
   constructor(private _productsService: ProductsService) {}
 
   onSubmit(){
-    let name = this.products[<number>this.myForm.value.name].value;
+    let name = this.products[<number>this.myForm.value.name-1].name;
     const product = new Product(name, parseInt(this.myForm.value.name),  this.myForm.value.description, this.myForm.value.price, this.myForm.value.quantity);
-    console.log(product);
     this._productsService.onAddProduct(product).subscribe(
-        data => console.log(data),
+        data => {
+            console.log(this);
+            let product_db_id = data.obj._id;
+            console.log(this.uploader.queue.length);
+            for(let i = 0; i < this.uploader.queue.length; i++){
+                console.log("elo");
+                var element = this.uploader.queue[i];
+                element.url = URL+"/?id="+product_db_id;
+                element.upload();
+            }
+        },
         error => console.log(error)
     )
   }

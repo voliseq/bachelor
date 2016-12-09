@@ -6,7 +6,6 @@ var express = require('express');
 var router = express.Router();
 var Product = require('../models/product');
 router.post('/', function(req, res, next){
-    console.log(req.body);
     var product = new Product({
         name: req.body.name,
         product_id: req.body.product_id,
