@@ -15,7 +15,6 @@ export class CheckoutFormComponent implements OnInit {
 
   myForm: FormGroup;
   public products: Array<any>
-
   constructor(private _productsService: ProductsService) {}
 
   onSubmit(){
@@ -24,15 +23,13 @@ export class CheckoutFormComponent implements OnInit {
     this._productsService.onAddProduct(product).subscribe(
         data => {
             console.log("elo");
+            //noinspection TypeScriptUnresolvedVariable
             let product_db_id = data.obj._id;
             for(let i = 0; i < this.uploader.queue.length; i++){
-                var self = this;
-                setTimeout(function(){
-                    console.log("elo");
-                    var element = self.uploader.queue[i];
-                    element.url = URL+"/?id="+product_db_id;
-                    element.upload();
-                }, 10000)
+                console.log("elo");
+                var element = this.uploader.queue[i];
+                element.url = URL+"/?id="+product_db_id;
+                element.upload();
             }
         },
         error => console.log(error)

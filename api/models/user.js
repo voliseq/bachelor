@@ -11,7 +11,11 @@ var schema = new Schema({
     lastName: {type: String, required: true},
     password: {type: String, required: true},
     email: {type: String, required: true, unique: true},
-    messages: [{type: Schema.Types.ObjectId, ref: 'Message'}]
+    messages: [{type: Schema.Types.ObjectId, ref: 'Message'}],
+    image: {
+        name: {type: String, required: true},
+        ext: {type: String, required: true}
+    }
 });
 
 schema.plugin(mongooseUniqueValidator);

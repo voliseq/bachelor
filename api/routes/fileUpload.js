@@ -5,8 +5,11 @@
  * Created by voliseq on 26.10.2016.
  */
 
-var express = require('express');
-var multer = require('multer');
+var express = require('express'),
+    multer = require('multer'),
+    mime = require('mime'),
+    crypto = require('crypto');
+
 var DIR = "./uploads/";
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -15,6 +18,11 @@ var storage = multer.diskStorage({
             fs.mkdir(FINAL_DIR);
         }
         cb(null, FINAL_DIR); // Absolute path. Folder must exist, will not be created for you.
+    },
+    filename: function(req, file, cb){
+        crypto.pseudoRandomBytes(16, function (err, raw) {
+            cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+        });
     }
 });
 
