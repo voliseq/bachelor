@@ -22,14 +22,12 @@ export class ProductsService {
         .share();
   };
 
-  fileUpload(file){
-    console.log(file);
-    var body = file;
-    console.log(body);
-    return this._http.post('http://localhost:3000/file', body)
+  getProducts(){
+    return this._http.get('http://localhost:3000/product')
         .map(response => response.json())
         .catch(error => Observable.throw(error.json()));
-  };
+  }
+
 
 
 }

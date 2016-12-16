@@ -10,7 +10,7 @@ import {routing} from "./e-commerce.routing";
 import {SmartadminDatatableModule} from "../shared/ui/datatable/smartadmin-datatable.module";
 import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 import {CarouselModule} from "ng2-bootstrap";
-import {SocketService} from "../services/socket-service/socket.service";
+import {ProductsService} from "../shared/products/products.service";
 
 @NgModule({
   imports: [
@@ -22,13 +22,13 @@ import {SocketService} from "../services/socket-service/socket.service";
     SmartadminWidgetsModule,
     StatsModule,
     SmartadminDatatableModule,
-    CarouselModule,
-
+    CarouselModule
   ],
   declarations: [
     ShoppingCartComponent,
     OrdersComponent,
     ProductsViewComponent, ProductDetailsComponent
-  ]
+  ],
+  providers: [ProductsService]
 })
 export class ECommerceModule { }

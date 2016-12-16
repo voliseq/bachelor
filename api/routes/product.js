@@ -28,4 +28,22 @@ router.post('/', function(req, res, next){
         })
     })
 });
+router.get('/', function(req, res, next){
+    Product.find()
+    .populate('images')
+    .exec(function(err, docs){
+        if(err){
+            return res.status(404).json({
+                message: 'could not get products',
+                error: err
+            })
+        }
+
+        res.status(200).json({
+            message: 'products found',
+            obj: docs
+        })
+
+    })
+});
 module.exports = router;
