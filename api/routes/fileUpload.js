@@ -8,7 +8,9 @@
 var express = require('express'),
     multer = require('multer'),
     mime = require('mime'),
-    crypto = require('crypto');
+    crypto = require('crypto'),
+    Product = require('../models/product'),
+    Image = require('../models/image');
 
 var DIR = "./uploads/";
 var storage = multer.diskStorage({
@@ -37,8 +39,36 @@ router.get('/get', function (req, res) {
 });
 
 router.post('/',upload.single('file'), function (req, res) {
-    console.log("file: "+JSON.stringify(req.file));
-    console.log("files: "+JSON.stringify(req.files));
-    res.end('uploaded file');
+    Product.findById(req.query.id, function(err, doc){
+        if(err){
+            return res.status('404').json({
+                title: 'failed to insert an image',
+                error: err
+            })
+        }
+        var file = req.file; // multer file
+        var image = new Image({
+            name: file.filename,
+            extension: file.mimetype.split('/')[1]
+        });
+
+        image.save(function(err, result){
+            if(err){
+                return res.status('404').json({
+                    title: 'failed to insert an image',
+                    error: err
+                })
+            }
+
+            doc.images.push(result);
+            doc.save();
+            res.status(201).json({
+                message: 'sucesfully saved an image',
+                obj: result
+            })
+            res.end('uploaded file');
+        });
+
+    });
 });
 module.exports = router;
