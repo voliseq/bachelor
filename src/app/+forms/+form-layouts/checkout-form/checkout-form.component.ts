@@ -2,7 +2,7 @@ import {Component, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import {PRODUCTS} from '../../../shared/products/products';
 import {FormGroup, Validators, FormControl} from "@angular/forms";
-import { Product } from "../../product.model";
+import { Product } from "../../../shared/products/product.model";
 import {ProductsService} from "../../../shared/products/products.service";
 var URL = 'http://localhost:3000/file';
 @Component({

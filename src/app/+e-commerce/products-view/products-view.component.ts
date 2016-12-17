@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductsService} from "../../shared/products/products.service";
-import {Product} from "../../+forms/product.model";
+import {Product} from "../../shared/products/product.model";
 
 @Component({
   selector: 'app-products-view',
@@ -15,7 +15,9 @@ export class ProductsViewComponent implements OnInit {
 
   ngOnInit() {
     this._productsService.getProducts().subscribe(
-        data => console.log(data),
+        data => {
+          console.log(data);
+        },
         error => console.log(error)
     );
   }
