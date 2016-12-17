@@ -10,13 +10,13 @@
     <!-- row -->
 
     <div class="row">
-      <div class="col-sm-6 col-md-6 col-lg-4">
+      <div class="col-sm-6 col-md-6 col-lg-4" *ngFor="let product of products; let i = index">
         <!-- product -->
         <div class="product-content product-wrap clearfix">
           <div class="row">
             <div class="col-md-5 col-sm-12 col-xs-12">
               <div class="product-image">
-                <img src="assets/img/demo/e-comm/3.png" alt="194x228" class="img-responsive">
+                <img src="assets/img/demo/e-comm/{{i+1}}.png" alt="194x228" class="img-responsive">
                 <span class="tag2 hot">
 													HOT
 												</span>
@@ -26,7 +26,7 @@
               <div class="product-deatil">
                 <h5 class="name">
                   <a routerLink="../product-details">
-                    Product Name Title Here <span>Category</span>
+                    {{product.name}} <span>Category</span>
                   </a>
                 </h5>
                 <p class="price-container">
@@ -35,7 +35,7 @@
                 <span class="tag1"></span>
               </div>
               <div class="description">
-                <p>Proin in ullamcorper lorem. Maecenas eu ipsum </p>
+                <p>{{product.description}}</p>
               </div>
             </div>
           </div>

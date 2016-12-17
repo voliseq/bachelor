@@ -16,7 +16,7 @@ export class ProductsViewComponent implements OnInit {
   ngOnInit() {
     this._productsService.getProducts().subscribe(
         data => {
-          console.log(data);
+          this.products = data;
         },
         error => console.log(error)
     );
