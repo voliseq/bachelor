@@ -5,6 +5,9 @@
 var express = require('express');
 var router = express.Router();
 var Product = require('../models/product');
+
+
+
 router.post('/', function(req, res, next){
     var product = new Product({
         name: req.body.name,
@@ -28,6 +31,23 @@ router.post('/', function(req, res, next){
         })
     })
 });
+
+router.get('/getOneProduct', function(req, res, next){
+    var product_id = req.query.id;
+    Product.findById(product_id, function(err, result){
+        if(err){
+            return res.status(404).json({
+                title: 'an error occured',
+                error: err
+            })
+        }
+        res.status(200).json({
+            title: 'product found',
+            obj: result
+        })
+    });
+});
+
 router.get('/', function(req, res, next){
     Product.find()
     .populate('images')
@@ -46,4 +66,5 @@ router.get('/', function(req, res, next){
 
     })
 });
+
 module.exports = router;

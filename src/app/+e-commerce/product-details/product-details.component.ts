@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SocketService} from "../../services/socket-service/socket.service";
+import {ActivatedRoute} from "@angular/router";
+import {ProductsService} from "../../shared/products/products.service";
 
 @Component({
   selector: 'app-product-details',
@@ -7,10 +9,12 @@ import {SocketService} from "../../services/socket-service/socket.service";
 })
 export class ProductDetailsComponent implements OnInit {
 
-  constructor(private _socketService: SocketService){
+  id: number;
+
+  constructor(private _socketService: SocketService, private _productsService: ProductsService, private _route: ActivatedRoute){
 
   }
-
+  product2: any;
   product = {
     slides: [
       {
@@ -25,7 +29,19 @@ export class ProductDetailsComponent implements OnInit {
     ]
   }
 
+  getOneProduct(id){
+    this._productsService.getOneProduct(this.id).subscribe(
+        data => console.log(data),
+        error => console.log(error)
+    )
+  };
+
   ngOnInit() {
+    this._route.params.subscribe(params => {
+      this.id = params['id'];
+    });
+    this.getOneProduct(this.id);
+
   }
 
 }

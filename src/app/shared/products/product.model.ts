@@ -4,11 +4,13 @@ import {Image} from "./image.model";
  */
 export class Product{
 
-    constructor(public name: string,
+    constructor(
+                public name: string,
                 public product_id: number,
                 public description: string,
                 public price: number,
                 public quantity: number,
+                public _id?: number,
                 public images?: Image[]){
 
     }
