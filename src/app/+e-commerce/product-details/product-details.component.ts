@@ -55,6 +55,7 @@ export class ProductDetailsComponent implements OnInit {
     });
     this.getOneProduct(this.id);
     this.socket = this._socketService.getSocket();
+    this._socketService.createRoom(String(this.id));
 
     var self = this;
 

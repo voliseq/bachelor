@@ -17,6 +17,9 @@ export class SocketService {
   emitBid(price){
     this.socket.emit('bid', price);
   }
+  createRoom(room){
+    this.socket.emit('create', room);
+  }
 
 
 }
