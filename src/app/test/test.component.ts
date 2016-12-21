@@ -13,7 +13,7 @@ export class TestComponent implements OnInit {
   price = 20;
   socket = null;
   ngOnInit() {
-    this.socket = this._socketService.GetSocket();
+    this.socket = this._socketService.getSocket();
     var self = this;
     this.socket.on("priceUpdate", function(data){
       console.log(data);
@@ -24,7 +24,7 @@ export class TestComponent implements OnInit {
   EmitBid(){
     console.log(this.price);
     console.log("Emited");
-    this._socketService.EmitBid();
+    this._socketService.emitBid(this.price);
   }
 
 }

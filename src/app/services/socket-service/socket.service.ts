@@ -11,11 +11,11 @@ export class SocketService {
   private socket;
   private url = "http://localhost:3000";
 
-  GetSocket(){
+  getSocket(){
     return this.socket;
   }
-  EmitBid(){
-    this.socket.emit('bid', 30);
+  emitBid(price){
+    this.socket.emit('bid', price);
   }
 
 
