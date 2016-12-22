@@ -12,16 +12,20 @@
 
     <ul saSmartMenu>
       <li routerLinkActive="active" >
-        <a  routerLink="/auth/login" title="Home">
-          <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">{{'Auth' | i18n}}</span></a>
+        <a  routerLink="/auth/login" title="Auth">
+          <i class="fa fa-lg fa-fw fa-sign-in"></i> <span class="menu-item-parent">{{'Login/Register' | i18n}}</span></a>
       </li>
-      <li routerLinkActive="active" >
-        <a  routerLink="/e-commerce/products-view" title="Home">
-          <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">{{'Products' | i18n}}</span></a>
-      </li>
-      <li routerLinkActive="active" >
-        <a  routerLink="/forms/layouts" title="Home">
-          <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">{{'Forms' | i18n}}</span></a>
+      <li>
+        <a title="Products" routerLink="/e-commerce/products-view"><i class="fa fa-lg fa-fw fa-home"></i> <span
+                class="menu-item-parent">{{'Products' | i18n}}</span></a>
+        <ul>
+          <li routerLinkActive="active" >
+            <a  routerLink="/e-commerce/products-view" title="All Products">{{'All Products' | i18n}}</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/forms/layouts">{{'Add Product' | i18n}}</a>
+          </li>
+        </ul>
       </li>
     </ul>
   </nav>
