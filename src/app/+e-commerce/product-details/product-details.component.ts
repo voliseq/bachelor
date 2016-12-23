@@ -7,6 +7,7 @@ import {Product} from "../../shared/products/product.model";
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
+  providers: [SocketService]
 })
 export class ProductDetailsComponent implements OnInit {
 
@@ -46,23 +47,32 @@ export class ProductDetailsComponent implements OnInit {
 
   onBid(){
     const bid = this.price + this.step;
-    this._socketService.emitBid(bid);
+    this._socketService.emitBid(bid, this.id);
   }
 
   ngOnInit() {
+    console.log("details");
     this._route.params.subscribe(params => {
       this.id = params['id'];
     });
     this.getOneProduct(this.id);
     this.socket = this._socketService.getSocket();
-    this._socketService.createRoom(String(this.id));
-
+    this._socketService.joinRoom(this.id);
     var self = this;
 
+    this.socket.on('room.joined', function(data){
+        console.log(data);
+    });
+
     this.socket.on("priceUpdate", function(data){
-      console.log(data);
       self.price = data;
-    })
+    });
+
+    this.socket.on("leader", function(){
+      console.log("i am the leader NOW !!");
+    });
+
+    console.log(typeof(this.id));
 
   }
 
