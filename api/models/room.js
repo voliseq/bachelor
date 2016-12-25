@@ -5,7 +5,6 @@ var room = function(id){
     this.people = [];
     this.id = id;
     this.leader = '';
-    this.previousLeader = '';
     this.bid_time = null;
     this.timer = null;
 

@@ -67,7 +67,10 @@ export class ProductDetailsComponent implements OnInit {
     this.socket.on('new leader', function(){self.leader = false;});
     this.socket.on('counter', function(time_left){
         console.log(time_left);
-    })
+    });
+    this.socket.on('auction.winner', function(){
+      console.log("you won !!!");
+    });
 
   }
 

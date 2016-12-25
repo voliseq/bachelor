@@ -34,8 +34,15 @@ module.exports.listen = function(app){
             time_left = 10;
 
             if(!room.timer){
-                setInterval(function() {
-                    io.sockets.emit('counter', time_left);
+               var counter = setInterval(function() {
+                    if(time_left >= 0 ) {
+                        io.to(room_id).emit('counter', time_left);
+                    }
+                    else{
+                        clearInterval(counter);
+                        io.to(room_id).emit('auction.end');
+                        io.to(room.leader).emit('auction.winner');
+                    }
                     time_left--;
                 }, 1000);
 
