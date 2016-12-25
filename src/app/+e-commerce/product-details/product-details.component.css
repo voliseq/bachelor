@@ -1,0 +1,8 @@
+.fa-4{
+    font-size: 4em !important;
+}
+#auction_leader{
+    position: absolute;
+    left: 152px;
+    color: #F0E660;
+}

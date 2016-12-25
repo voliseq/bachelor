@@ -23,11 +23,11 @@ export class SocketService {
     console.log(this.a);
     return this.socket;
   }
-  emitBid(price, room){
-    this.socket.emit('bid', {price: price, room: room});
+  emitBid(price, room_id, bid_time){
+    this.socket.emit('bid', {price: price, room_id: room_id, bid_time: bid_time});
   }
-  joinRoom(room){
-    this.socket.emit('room.join', room);
+  joinRoom(room_id){
+    this.socket.emit('room.join', room_id);
   }
 
 

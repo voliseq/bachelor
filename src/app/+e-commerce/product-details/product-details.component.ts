@@ -7,6 +7,7 @@ import {Product} from "../../shared/products/product.model";
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
+  styleUrls: ['./product-details.component.css'],
   providers: [SocketService]
 })
 export class ProductDetailsComponent implements OnInit {
@@ -16,6 +17,7 @@ export class ProductDetailsComponent implements OnInit {
   price: number;
   step: number = 5;
   socket = null;
+  leader: boolean = false;
   constructor(private _socketService: SocketService, private _productsService: ProductsService, private _route: ActivatedRoute){
 
   }
@@ -47,32 +49,25 @@ export class ProductDetailsComponent implements OnInit {
 
   onBid(){
     const bid = this.price + this.step;
-    this._socketService.emitBid(bid, this.id);
+    const bid_time = Date.now()/100; // in seconds
+    this._socketService.emitBid(bid, this.id, bid_time);
   }
 
   ngOnInit() {
-    console.log("details");
     this._route.params.subscribe(params => {
       this.id = params['id'];
     });
     this.getOneProduct(this.id);
     this.socket = this._socketService.getSocket();
     this._socketService.joinRoom(this.id);
+    this.socket.on('room.joined', function(data){});
     var self = this;
-
-    this.socket.on('room.joined', function(data){
-        console.log(data);
-    });
-
-    this.socket.on("priceUpdate", function(data){
-      self.price = data;
-    });
-
-    this.socket.on("leader", function(){
-      console.log("i am the leader NOW !!");
-    });
-
-    console.log(typeof(this.id));
+    this.socket.on("priceUpdate", function(data){self.price = data;});
+    this.socket.on("leader", function(){self.leader = true; console.log(this.leader);});
+    this.socket.on('new leader', function(){self.leader = false;});
+    this.socket.on('counter', function(time_left){
+        console.log(time_left);
+    })
 
   }
 

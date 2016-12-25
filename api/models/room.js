@@ -5,9 +5,12 @@ var room = function(id){
     this.people = [];
     this.id = id;
     this.leader = '';
+    this.previousLeader = '';
+    this.bid_time = null;
+    this.timer = null;
 
     this.addPerson = function(person){
-        people.push(person);
+        this.people.push(person);
     };
     this.removePerson = function(person){
         this.people.splice(this.people.indexOf(person),1);

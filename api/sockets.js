@@ -1,31 +1,55 @@
-var socketio = require('socket.io')
-var Room = require('./models/room');
+var socketio = require('socket.io'),
+    Room = require('./models/room'),
+    counter = require('./helpers/counter');
+
+
+
 module.exports.listen = function(app){
     io = socketio.listen(app);
 
-    var rooms = [];
+    var rooms = [],
+        room_id,
+        price,
+        room,
+        time_left;
 
     io.sockets.on('connection', function(socket){
         console.log("connected: "+socket.id);
         socket.emit('room.joined', socket.id + 'joined default room');
         console.log(socket.id +' joined default room');
-        socket.on('room.join', function(room){
-            socket.join(room);
-
-            var newRoom = new Room(room);
+        socket.on('room.join', function(room_id){
+            socket.join(room_id);
+            var newRoom = new Room(room_id);
             rooms.push(newRoom);
-            io.to(room).emit('room.joined', socket.id + 'joined the ' + room);
+            io.to(room_id).emit('room.joined', socket.id + 'joined the ' + room_id);
         });
 
         socket.on('bid', function(data){
-            var room = data.room;
-            var price = data.price;
-            var roomFromArray = rooms.find(r => r.id == room);
 
-            roomFromArray.leader = socket.id;
-            roomFromArray.people.push[socket.id];
+
+
+            room_id = data.room_id;
+            price = data.price;
+            room = rooms.find(r => r.id == room_id);
+            time_left = 10;
+
+            if(!room.timer){
+                setInterval(function() {
+                    io.sockets.emit('counter', time_left);
+                    time_left--;
+                }, 1000);
+
+                room.timer = true;
+            }
+
+            if(room){
+                io.to(room.leader).emit('new leader');
+                room.leader = socket.id;
+                room.addPerson(socket.id);
+                room.bid_time = data.bid_time;
+            }
             socket.emit('leader');
-            io.to(room).emit('priceUpdate', price);
+            io.to(room_id).emit('priceUpdate', price);
 
         })
 
