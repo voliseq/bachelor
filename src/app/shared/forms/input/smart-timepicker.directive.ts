@@ -3,20 +3,26 @@ import {Directive, ElementRef, OnInit} from '@angular/core';
 declare var $: any;
 
 @Directive({
-  selector: '[smartTimepicker]'
+    selector: '[smartTimepicker]'
 })
-export class SmartTimepickerDirective implements OnInit{
+export class SmartTimepickerDirective implements OnInit {
 
-  constructor(private el: ElementRef) { }
-
-  ngOnInit(){
-    System.import('script!bootstrap-timepicker/js/bootstrap-timepicker.min.js').then(()=>{
-      this.render()
-    })
-  }
+    constructor(private el: ElementRef) {
+    }
 
 
-  render(){
-    $(this.el.nativeElement).timepicker();
-  }
+    ngOnInit() {
+        System.import('script!bootstrap-timepicker/js/bootstrap-timepicker.min.js').then(()=> {
+            this.render()
+        })
+
+        console.log(this.el);
+
+    }
+
+    render() {
+        $(this.el.nativeElement).timepicker().on("changeTime.timepicker", function (e) {
+            console.log(e);
+        });
+    }
 }

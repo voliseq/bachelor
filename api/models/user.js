@@ -11,7 +11,8 @@ var schema = new Schema({
     lastName: {type: String, required: true},
     password: {type: String, required: true},
     email: {type: String, required: true, unique: true},
-    messages: [{type: Schema.Types.ObjectId, ref: 'Message'}]
+    messages: [{type: Schema.Types.ObjectId, ref: 'Message'}],
+    start: {type: Date}
 });
 
 schema.plugin(mongooseUniqueValidator);

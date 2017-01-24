@@ -4,3 +4,8 @@
 .another-file-over-class { border: dotted 3px green; }
 
 html, body { height: 100%; }
+
+
+.hour-picker .input-group .form-control{
+    z-index: 0;
+}
